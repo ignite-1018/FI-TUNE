@@ -4,6 +4,13 @@
 
 FI TUNE is a community-developed Android music player derived from [ArchiveTune](https://github.com/rukamori/ArchiveTune). It is an independent project and is not affiliated with or endorsed by the ArchiveTune maintainers.
 
+## Screenshots
+
+<p align="center">
+  <img src="assets/screenshots/home.png" alt="FI TUNE home screen" width="360">
+  <img src="assets/screenshots/search.png" alt="FI TUNE search screen" width="360">
+</p>
+
 ## Highlights
 
 - Browse and play music, manage queues and playlists, and search your library.
