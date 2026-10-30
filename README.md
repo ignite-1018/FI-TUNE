@@ -20,7 +20,7 @@ FI TUNE is a community-developed Android music player derived from [ArchiveTune]
 
 ## Get FI TUNE
 
-The first FI TUNE release is being prepared. Once published, signed APKs will be available from [GitHub Releases](https://github.com/ignite-1018/FI-TUNE/releases). Until then, build the app from source using the instructions below.
+Download the signed FI TUNE v1.0.0 APK from [MediaFire](https://www.mediafire.com/file/otcx15vdr1vmmoq/FI_TUNE.apk/file). Future signed releases will also be listed on [GitHub Releases](https://github.com/ignite-1018/FI-TUNE/releases). If you prefer, build the app from source using the instructions below.
 
 The Android application ID is `com.fitune.app`. The initial release is version `1.0.0` with version code `1`.
 
