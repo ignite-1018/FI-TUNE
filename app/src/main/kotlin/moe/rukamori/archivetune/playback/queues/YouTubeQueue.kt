@@ -8,6 +8,7 @@
 package moe.rukamori.archivetune.playback.queues
 
 import androidx.media3.common.MediaItem
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
 import moe.rukamori.archivetune.extensions.toMediaItem
@@ -17,6 +18,7 @@ import moe.rukamori.archivetune.models.MediaMetadata
 import moe.rukamori.archivetune.innertube.pages.QueueChip
 import moe.rukamori.archivetune.innertube.pages.NextResult
 import moe.rukamori.archivetune.playback.withQueueEntry
+import timber.log.Timber
 
 class YouTubeQueue(
     internal var endpoint: WatchEndpoint,
@@ -33,14 +35,28 @@ class YouTubeQueue(
     override val queueChips: List<QueueChip> get() = chips
 
     override suspend fun getInitialStatus(): Queue.Status {
-        val nextResult =
+        val result =
             withContext(IO) {
-                YouTube
-                    .next(
-                        endpoint = endpoint,
-                        continuation = continuation,
-                        followAutomixPreview = followAutomixPreview,
-                    ).getOrThrow()
+                YouTube.next(
+                    endpoint = endpoint,
+                    continuation = continuation,
+                    followAutomixPreview = followAutomixPreview,
+                )
+            }
+        val nextResult =
+            result.getOrElse { error ->
+                if (error is CancellationException || preloadItem == null) throw error
+
+                Timber.tag("YouTubeQueue").w(
+                    error,
+                    "Failed to load queue for %s; keeping the selected song in the queue",
+                    endpoint.videoId,
+                )
+                return Queue.Status(
+                    title = null,
+                    items = listOf(preloadItem.toMediaItem().withQueueEntry(recommended = isRadio)),
+                    mediaItemIndex = 0,
+                )
             }
         endpoint = nextResult.endpoint
         continuation = nextResult.continuation

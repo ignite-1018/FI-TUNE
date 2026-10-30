@@ -4947,7 +4947,7 @@ class MusicService :
 
             val baseUrl =
                 moe.rukamori.archivetune.together.TogetherOnlineEndpoint
-                    .baseUrlOrNull(dataStore)
+                    .baseUrlOrNull()
             if (baseUrl == null) {
                 scope.launch(SilentHandler) {
                     togetherSessionState.value =
@@ -5333,7 +5333,7 @@ class MusicService :
 
             val baseUrl =
                 moe.rukamori.archivetune.together.TogetherOnlineEndpoint
-                    .baseUrlOrNull(dataStore)
+                    .baseUrlOrNull()
             if (baseUrl == null) {
                 scope.launch(SilentHandler) {
                     togetherSessionState.value =

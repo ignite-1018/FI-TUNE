@@ -93,7 +93,7 @@ object LastFM {
         extra: Map<String, String> = emptyMap(),
         format: String = "json",
     ) {
-        headers.append(HttpHeaders.UserAgent, "ArchiveTune (https://github.com/rukamori/ArchiveTune)")
+        headers.append(HttpHeaders.UserAgent, "FI TUNE (https://github.com/ignite-1018/FI-TUNE)")
         val paramsForSig =
             mutableMapOf(
                 "method" to method,

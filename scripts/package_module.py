@@ -35,7 +35,7 @@ TYPES = {
     "toggle": "boolean", "checkbox": "boolean", "select": "select", "selector": "select", "dropdown": "select",
 }
 SENSITIVE = re.compile(r"token|password|secret|credential|api.?key|cookie|authorization", re.I)
-RUNTIME_NOTE = "JavaScript was not executed. Callable exports, service access, audio quality, and playback must be checked in ArchiveTune."
+RUNTIME_NOTE = "JavaScript was not executed. Callable exports, service access, audio quality, and playback must be checked in FI TUNE."
 
 
 def issue(issues, field, message, level="error"):
@@ -643,7 +643,7 @@ def report_destination(path, protected):
 
 def interactive(directory=None, output=None, app_version=None):
     while True:
-        heading("ArchiveTune Module Studio | .arch v1")
+        heading("FI TUNE Module Studio | .arch v1")
         directory = directory or input_path("Provider workspace")
         try:
             original = parse_json(read_bounded(directory / "manifest.json", LIMITS["manifest.json"]))
@@ -738,7 +738,7 @@ def interactive(directory=None, output=None, app_version=None):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Author, validate, inspect, and package ArchiveTune .arch modules. No arguments opens the interactive terminal studio.")
+    parser = argparse.ArgumentParser(description="Author, validate, inspect, and package FI TUNE .arch modules. No arguments opens the interactive terminal studio.")
     parser.add_argument("directory", nargs="?", type=Path, help="Provider workspace with manifest.json and provider.js")
     parser.add_argument("output", nargs="?", type=Path, help="Destination .arch file; scripted use replaces an existing file")
     parser.add_argument("--interactive", action="store_true", help="Open the terminal studio, optionally at directory/output")

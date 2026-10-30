@@ -844,7 +844,7 @@ private class LocalCastMediaServer(
                 connectTimeout = REMOTE_CONNECT_TIMEOUT_MS
                 readTimeout = REMOTE_READ_TIMEOUT_MS
                 instanceFollowRedirects = true
-                setRequestProperty("User-Agent", "ArchiveTune Cast")
+                setRequestProperty("User-Agent", "FI TUNE Cast")
                 rangeHeader?.let { setRequestProperty(HttpHeaders.Range, it) }
             }
         return runCatching {

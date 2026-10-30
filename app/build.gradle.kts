@@ -35,7 +35,14 @@ val githubRepo =
     System.getenv("GITHUB_REPO").trimToNull()
         ?: localProperties.getProperty("GITHUB_REPO").trimToNull()
         ?: "FI-TUNE"
-val githubUpdatesAvailable = githubOwner.isNotBlank() && githubRepo.isNotBlank()
+val githubUpdatesAvailable =
+    (
+        System.getenv("ENABLE_GITHUB_UPDATES")
+            ?: localProperties.getProperty("ENABLE_GITHUB_UPDATES")
+        ).trimToNull()?.equals("true", ignoreCase = true) == true
+val togetherServerUrl =
+    System.getenv("TOGETHER_SERVER_URL").trimToNull()
+        ?: localProperties.getProperty("TOGETHER_SERVER_URL").trimToNull()
 
 val fallbackDataServerUrl = ""
 val dataServerUrl =
@@ -54,11 +61,13 @@ val discordApplicationId =
     (
         localProperties.getProperty("DISCORD_APPLICATION_ID")
             ?: System.getenv("DISCORD_APPLICATION_ID")
-            ?: "1165706613961789445"
+            ?: ""
         ).trim()
-val discordApplicationIdLong = discordApplicationId.toLongOrNull() ?: 1165706613961789445L
+val discordApplicationIdLong = discordApplicationId.toLongOrNull() ?: 0L
 val discordRedirectScheme = "discord-$discordApplicationId"
-val releaseKeystoreFile = file("keystore/release.keystore")
+val releaseKeystoreFile =
+    System.getenv("RELEASE_KEYSTORE_PATH").trimToNull()?.let { file(it) }
+        ?: file("keystore/release.keystore")
 val releaseStorePassword =
     System.getenv("STORE_PASSWORD")?.takeIf { it.isNotBlank() }
         ?: System.getenv("KEYSTORE_PASSWORD")?.takeIf { it.isNotBlank() }
@@ -79,8 +88,8 @@ android {
     applicationId = "com.fitune.app"
         minSdk = 26
         targetSdk = 37
-        versionCode = 142
-        versionName = "15.1.0"
+        versionCode = 1
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -103,6 +112,7 @@ android {
         buildConfigField("String", "TOGETHER_BEARER_TOKEN", "\"$togetherBearerToken\"")
 
         buildConfigField("String", "DATA_SERVER_URL", dataServerUrl.asBuildConfigString())
+        buildConfigField("String", "TOGETHER_SERVER_URL", (togetherServerUrl ?: "").asBuildConfigString())
         buildConfigField("String", "API_BEARER_TOKEN", apiBearerToken.asBuildConfigString())
         buildConfigField("boolean", "GATEKEEPER_ENABLED", "false")
         buildConfigField("boolean", "LEAK_CANARY_TOGGLE_AVAILABLE", "false")

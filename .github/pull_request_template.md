@@ -1,8 +1,6 @@
 # Pull Request
 
-Before submitting a pull request, you must attest to the following:
-
-- [ ] This pull request complies with ArchiveTune's [NO AI / NO LLM POLICY](../blob/main/CONTRIBUTING.md#no-ai--no-llm-policy).
+Please read the FI TUNE [contribution guide](../blob/main/CONTRIBUTING.md) before submitting a pull request.
 
 ## Summary
 

@@ -152,7 +152,7 @@ object DiscordImageResolver {
             }
 
             "appicon" -> {
-                "https://raw.githubusercontent.com/rukamori/ArchiveTune/main/fastlane/metadata/android/en-US/images/icon.png"
+                "https://raw.githubusercontent.com/ignite-1018/FI-TUNE/main/assets/fi-tune-icon.png"
             }
 
             "custom" -> {

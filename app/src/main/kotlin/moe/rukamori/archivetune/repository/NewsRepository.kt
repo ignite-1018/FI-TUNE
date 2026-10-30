@@ -74,8 +74,8 @@ class NewsRepository
 
         private companion object {
             const val METADATA_URL =
-                "https://raw.githubusercontent.com/koiverse/ArchiveTuneNewsRepository/main/metadata.json"
+                "https://raw.githubusercontent.com/ignite-1018/FI-TUNE/main/news/metadata.json"
             const val CONTENT_BASE_URL =
-                "https://raw.githubusercontent.com/koiverse/ArchiveTuneNewsRepository/main/content/"
+                "https://raw.githubusercontent.com/ignite-1018/FI-TUNE/main/news/content/"
         }
     }

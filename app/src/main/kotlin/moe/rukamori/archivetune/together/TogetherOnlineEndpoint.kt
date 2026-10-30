@@ -7,81 +7,13 @@
 
 package moe.rukamori.archivetune.together
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.okhttp.OkHttp
-import io.ktor.client.request.get
-import io.ktor.client.statement.bodyAsText
-import moe.rukamori.archivetune.constants.TogetherOnlineEndpointCacheKey
-import moe.rukamori.archivetune.constants.TogetherOnlineEndpointLastCheckedAtKey
-import moe.rukamori.archivetune.utils.getAsync
+import moe.rukamori.archivetune.BuildConfig
 import java.net.URI
-import java.util.concurrent.TimeUnit
 
 object TogetherOnlineEndpoint {
-    private const val EndpointSourceUrl =
-        "https://raw.githubusercontent.com/rukamori/ArchiveTune/refs/heads/dev/ArchiveTuneKoiverseServer.txt"
-
-    private const val CacheTtlMs: Long = 6 * 60 * 60 * 1000L
-
-    private val httpClient =
-        HttpClient(OkHttp) {
-            engine {
-                config {
-                    connectTimeout(12, TimeUnit.SECONDS)
-                    readTimeout(12, TimeUnit.SECONDS)
-                    writeTimeout(12, TimeUnit.SECONDS)
-                    retryOnConnectionFailure(true)
-                }
-            }
-        }
-
-    suspend fun baseUrlOrNull(dataStore: DataStore<Preferences>): String? {
-        val now = System.currentTimeMillis()
-        val cached = dataStore.getAsync(TogetherOnlineEndpointCacheKey)?.trim().orEmpty()
-        val lastCheckedAt = dataStore.getAsync(TogetherOnlineEndpointLastCheckedAtKey, 0L)
-
-        if (cached.isNotBlank() && now - lastCheckedAt < CacheTtlMs) return cached
-
-        val fetched = fetchEndpointFromSourceOrNull()
-        if (fetched != null) {
-            dataStore.edit { prefs ->
-                prefs[TogetherOnlineEndpointCacheKey] = fetched
-                prefs[TogetherOnlineEndpointLastCheckedAtKey] = now
-            }
-            return fetched
-        }
-
-        if (cached.isNotBlank()) {
-            dataStore.edit { prefs ->
-                prefs[TogetherOnlineEndpointLastCheckedAtKey] = now
-            }
-            return cached
-        }
-
-        dataStore.edit { prefs ->
-            prefs[TogetherOnlineEndpointLastCheckedAtKey] = now
-        }
-        return null
-    }
-
-    private suspend fun fetchEndpointFromSourceOrNull(): String? {
-        val text =
-            runCatching { httpClient.get(EndpointSourceUrl).bodyAsText() }
-                .getOrNull()
-                ?.trim()
-                .orEmpty()
-        if (text.isBlank()) return null
-
-        val candidate =
-            text
-                .lineSequence()
-                .map { it.trim() }
-                .firstOrNull { it.isNotBlank() }
-                ?: return null
-
+    suspend fun baseUrlOrNull(): String? {
+        val candidate = BuildConfig.TOGETHER_SERVER_URL.trim()
+        if (candidate.isBlank()) return null
         val uri = runCatching { URI(candidate) }.getOrNull() ?: return null
         val scheme = uri.scheme?.trim()?.lowercase()
         if (scheme != "http" && scheme != "https") return null

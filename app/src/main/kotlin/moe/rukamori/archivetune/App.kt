@@ -174,7 +174,7 @@ class App :
 
     private fun initializeCriticalSync() {
         startCanvasPolicy.start(applicationScope)
-        PaxsenixLyrics.setUserAgent("ArchiveTune", BuildConfig.VERSION_NAME)
+        PaxsenixLyrics.setUserAgent("FI TUNE", BuildConfig.VERSION_NAME)
 
         val locale = Locale.getDefault()
         val languageTag = locale.toLanguageTag().replace("-Hant", "")

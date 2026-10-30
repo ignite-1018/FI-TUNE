@@ -1,11 +1,11 @@
-# ArchiveTune Module Authoring
+# FI TUNE Module Authoring
 
 This guide defines the native `.arch` package format and module API version 1.
-It applies to ArchiveTune builds containing `ModulePackageReader`, older releases
+It applies to FI TUNE builds containing `ModulePackageReader`, older releases
 do not acquire ZIP package support by renaming a file. The package and API version
 numbers are independent of your provider's own version.
 
-A module supplies alternative audio for an existing song. ArchiveTune keeps the
+A module supplies alternative audio for an existing song. FI TUNE keeps the
 song's identity, displayed metadata, library entry, and queue position. Modules
 do not add a source picker, music search destination, or browsing screen.
 
@@ -134,7 +134,7 @@ the credential setting when your service does not need one.
 | `module.homepage` / `module.repository` | Optional absolute HTTP(S) project/source URLs, at most 2,048 characters. Displayed as links in review/details. |
 | `module.license` | Optional license identifier/text, at most 256 characters. Describes the provider, not the audio. |
 | `module.type` | Optional category string or array of strings, informational. Does not enable new app destinations or host permissions. |
-| `module.minAppVersion` | Optional minimum ArchiveTune version as `major.minor.patch`, with 1–6 digits per part. Installation and resolution reject newer requirements. The installed app's numeric release prefix is compared, build suffixes are ignored. |
+| `module.minAppVersion` | Optional minimum FI TUNE version as `major.minor.patch`, with 1–6 digits per part. Installation and resolution reject newer requirements. The installed app's numeric release prefix is compared, build suffixes are ignored. |
 | `module.requiredRuntimeFeatures` | Optional string or array of required feature IDs. Unknown IDs are rejected. |
 | `module.icon` | Optional literal `"icon.png"`, referencing the packaged PNG. Omit the field and file for a module without an icon. |
 | `iconSha256` | Required at package root when an icon is declared, SHA-256 of the exact PNG bytes. Added by the packager. |
@@ -260,7 +260,7 @@ accepted as a typed default after `defaultValue` and `value`. The installer
 normalizes either authoring shape into the same keyed runtime settings object.
 
 The module owns its quality vocabulary, values, default, and any fallback
-policy. ArchiveTune does not translate those values through its YouTube quality
+policy. FI TUNE does not translate those values through its YouTube quality
 enum. If the exact key `quality` is declared, its configured value is also passed
 as the second argument of `getTrackStreamUrl`. Null is passed as `undefined` in
 that argument. Other quality-related fields remain available through context.
@@ -320,7 +320,7 @@ disguising them as an empty search.
 | `explicit` | Optional JSON boolean, omit it when unknown. |
 | `isrc` | Optional recording identifier. It is retained in track context, do not rely on it bypassing matching. |
 
-Title and artist metadata are necessary for matching. ArchiveTune rejects weak
+Title and artist metadata are necessary for matching. FI TUNE rejects weak
 title/artist agreement, conflicting recording markers, known explicit-content
 conflicts, and incompatible duration. Preserve live/remix/remaster/cover and
 similar recording information. Do not relabel a different recording to force a
@@ -420,16 +420,16 @@ engines, it is an application implementation detail.
 ## Package and install
 
 Python 3.9 or newer with its standard library is sufficient for the supplied
-packager. Cloning ArchiveTune is optional: download the standalone script with
+packager. Cloning FI TUNE is optional: download the standalone script with
 `curl` and run it against your own provider directory.
 
-### Without cloning ArchiveTune
+### Without cloning FI TUNE
 
 On Linux, macOS, or another POSIX shell:
 
 ```sh
 curl --fail --silent --show-error --location --output package_module.py \
-  https://raw.githubusercontent.com/rukamori/ArchiveTune/dev/scripts/package_module.py &&
+  https://raw.githubusercontent.com/ignite-1018/FI-TUNE/main/scripts/package_module.py &&
 python3 package_module.py "./my-provider" "./my-provider.arch"
 ```
 
@@ -437,7 +437,7 @@ On Windows PowerShell, use `curl.exe` to select the curl executable rather than
 the Windows PowerShell alias:
 
 ```powershell
-curl.exe --fail --silent --show-error --location --output package_module.py "https://raw.githubusercontent.com/rukamori/ArchiveTune/dev/scripts/package_module.py"
+curl.exe --fail --silent --show-error --location --output package_module.py "https://raw.githubusercontent.com/ignite-1018/FI-TUNE/main/scripts/package_module.py"
 if ($LASTEXITCODE -eq 0) {
     py -3 .\package_module.py ".\my-provider" ".\my-provider.arch"
 }
@@ -446,7 +446,7 @@ if ($LASTEXITCODE -eq 0) {
 Replace the two provider paths with your input directory and desired output
 file. The commands save `package_module.py` in the current directory and run it
 only after curl succeeds. They download the packager, not a provider or the full
-ArchiveTune repository. On Windows, `python` can replace `py -3` when that is how
+FI TUNE repository. On Windows, `python` can replace `py -3` when that is how
 Python 3.9 or newer is installed.
 
 The URL above follows the `dev` branch, where the packager is currently
@@ -455,7 +455,7 @@ or tag that contains `scripts/package_module.py`.
 
 ### From an existing checkout
 
-From the ArchiveTune repository root:
+From the FI TUNE repository root:
 
 ```text
 python scripts/package_module.py path/to/my-provider path/to/my-provider.arch
@@ -510,7 +510,7 @@ python package_module.py ./my-provider ./my-provider.arch --report ./package-rep
 python package_module.py --inspect ./my-provider.arch --json
 ```
 
-Use your target ArchiveTune version with `--app-version`. Without it, the tool
+Use your target FI TUNE version with `--app-version`. Without it, the tool
 validates the minimum-version declaration but does not claim that a particular
 app build satisfies it. Unknown required runtime features are rejected using
 this script's supported-feature list.
@@ -642,7 +642,7 @@ and redacted codes, arbitrary provider exception messages are not displayed.
 | `ARCH_MANIFEST`, `ARCH_IDENTITY`, `ARCH_LABELS`, `ARCH_SETTINGS`, `ARCH_CAPABILITIES` | Manifest types, required identity, typed defaults, numeric bounds, known capability names. |
 | `ARCH_SETTING_TYPE` | Replace an unknown setting type with a supported declaration. |
 | `ARCH_ICON`, `ARCH_ICON_CHECKSUM` | Declare `icon.png` explicitly, include only that image, and repackage after editing it. Invalid PNG size, dimensions, or encoding are also rejected. |
-| `ARCH_APP_VERSION`, `ARCH_RUNTIME_FEATURE` | The installed ArchiveTune build must satisfy the declared minimum version and every required host feature. |
+| `ARCH_APP_VERSION`, `ARCH_RUNTIME_FEATURE` | The installed FI TUNE build must satisfy the declared minimum version and every required host feature. |
 | `ARCH_QUALITY_OPTIONS` | Remove duplicate quality declarations, check unique typed IDs and that the default matches an option. |
 | `ARCH_UNSUPPORTED_…` | Remove declarations for host behavior this runtime does not implement, descriptive metadata does not activate those APIs. |
 | `EXT_RUNTIME_FEATURE_…`, `EXT_PLAYBACK_PROVIDER` | The extension needs an unavailable host feature or lacks the playback-provider contract. Metadata-only extensions cannot supply automatic audio. |
@@ -666,7 +666,7 @@ do not attach account tokens or signed stream URLs publicly.
 
 This runtime loads single-file JavaScript extensions that use
 `registerExtension(...)` and a separate `manifest.json`.
-It adapts playback providers to ArchiveTune's existing automatic audio
+It adapts playback providers to FI TUNE's existing automatic audio
 resolution. It does not add music search, home feeds, URL handlers, or new
 browsing destinations to the application.
 
@@ -694,7 +694,7 @@ also fit the PNG size bound. Unsafe paths, duplicate entries, invalid metadata,
 and unknown required runtime features reject the staged import.
 
 An imported extension's `minAppVersion` refers to its originating host. It is retained as
-extension data, not compared numerically with ArchiveTune's version. Required
+extension data, not compared numerically with FI TUNE's version. Required
 runtime features determine host compatibility. This implementation recognizes
 `signedSession@3`, `sessionGrant@1`, `downloadSegments@1`, and
 `preparedContext@1`, `apiV3@1` is not implemented.
@@ -704,7 +704,7 @@ runtime features determine host compatibility. This implementation recognizes
 Use the existing `.arch` envelope, checksums, `provider.js`, stable module ID,
 and capability-name array. Add the top-level field `"runtime": "extension"` and
 write `registerExtension(...)` in the entry script. The declared capabilities
-describe the resulting ArchiveTune provider: `searchTracks`,
+describe the resulting FI TUNE provider: `searchTracks`,
 `getTrackStreamUrl`, and any registered optional album/artist/playlist methods.
 The adapter supplies `getTrackStreamUrl` from the extension's `download` method.
 
@@ -712,11 +712,11 @@ Select the runtime in the packager's **Edit metadata** action. **Edit settings /
 quality** then exposes `permissions` and `signedSession` declarations as well.
 The default `archivetune` runtime retains the `module.exports` contract and
 does not acquire these APIs. `.arch` minimum-version checks still refer to
-ArchiveTune even when the extension runtime is selected.
+FI TUNE even when the extension runtime is selected.
 
 ### Execution and host bindings
 
-| API or contract | ArchiveTune behavior |
+| API or contract | FI TUNE behavior |
 | --- | --- |
 | `registerExtension(object)` | Exactly one registration with callable track-search and download methods is required. |
 | `initialize(settings)` | Receives flat, typed setting values. Initialization runs when that engine's configuration changes, a returned `false` fails the operation. |
@@ -729,7 +729,7 @@ ArchiveTune even when the extension runtime is selected.
 | `http.clearCookies()` | Clears that installation's cookie jar. Cookies are isolated from application and YouTube accounts. |
 | `storage.get/set/remove/clear/keys` | Per-installation typed values, limited to 1 MiB and encrypted with an Android Keystore key. Requires `permissions.storage`. Import inspection uses disposable memory storage and permits no network requests. |
 | `utils` | SHA-256/SHA-1/MD5 digests, UTF-8 Base64, JSON helpers, UUIDs, app version/user agent, bounded sleep, remaining resolution time, and cancellation state. `randomUserAgent()` uses the application's user agent. |
-| `matching.compareStrings/compareDuration` | Normalized token similarity and duration proximity helpers. ArchiveTune's independent recording matcher remains the acceptance boundary. |
+| `matching.compareStrings/compareDuration` | Normalized token similarity and duration proximity helpers. FI TUNE's independent recording matcher remains the acceptance boundary. |
 | `session` | Host-owned signed requests, authentication status, and session clearing. Browser grants are completed through the application's callback, not by handing a session secret to JavaScript. |
 
 The existing URL, headers, encoding, typed-array, timer, and cancellation
@@ -753,7 +753,7 @@ Signed-session manifests must declare `signedSession.schemeLabel` using the
 protocol identifier supplied by their service. The host uses that value exactly,
 it does not substitute the application name or supply a default scheme label.
 If verification is required, it opens the service's HTTPS challenge with an
-ArchiveTune callback. The return must contain exactly one matching unexpired
+FI TUNE callback. The return must contain exactly one matching unexpired
 state and a grant or code. The host exchanges the grant and stores the session
 secret encrypted. Requests use the declared HMAC-SHA256 scheme, rolling time
 window, nonce, timestamp, and body digest. Expiring sessions use the declared
@@ -774,7 +774,7 @@ are rejected, timing information is not guessed from a list of URLs. Requires
 manifest, segment, and key requests.
 
 Tidal's standalone-file export can convert FLAC carried in MP4 into a `.flac`
-file. ArchiveTune's playback and offline downloads use Media3's container
+file. FI TUNE's playback and offline downloads use Media3's container
 extraction and cache instead: the compressed audio stays in its original
 container, with no conversion of the audio samples. The adapter stops before
 file tagging and standalone-file conversion. It does not expose arbitrary
@@ -803,7 +803,7 @@ target app/device before publishing compatibility claims.
 - Check that changing YouTube quality does not change your module's request.
 - Verify playback and applicable downloads against your real service.
 - Publish source, service requirements, supported qualities, version history,
-  and the ArchiveTune build/API versions you actually checked. Do not claim
+  and the FI TUNE build/API versions you actually checked. Do not claim
   compatibility based only on successful packaging or initialization.
 
 The implementation references are [package validation](modules/src/main/kotlin/moe/rukamori/archivetune/modules/ModulePackageReader.kt),
