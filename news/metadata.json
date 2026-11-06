@@ -2,7 +2,7 @@
   {
     "id": "playback-fix-2026-11",
     "Title": "Playback fix: update FI TUNE to 1.0.4",
-    "Description": "We fixed a playback issue that could show \"No stream available\" when YouTube rejected an audio stream. Please update to FI TUNE 1.0.4 to get the fix.",
+    "Description": "We fixed a playback issue that could show \"No stream available\" when YouTube rejected an audio stream. Update FI TUNE to 1.0.4 to get the fix.",
     "ImageURL": [],
     "Important": true,
     "Author": "FI TUNE Developer",
