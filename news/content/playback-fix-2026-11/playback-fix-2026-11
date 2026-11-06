@@ -1,9 +1,0 @@
-## Playback fix - please update FI TUNE
-
-We fixed a playback problem that could cause the app to show **"No stream available"** when YouTube rejected an audio stream.
-
-The app now retries a failed stream with a different supported playback client, limits recovery attempts to avoid repeated retry loops, and lets the app's recovery process handle known HTTP 403 stream failures.
-
-**Please update to FI TUNE 1.0.4 to get this fix.** Download the latest version from the [FI TUNE GitHub release](https://github.com/ignite-1018/FI-TUNE/releases/tag/V1.0.4).
-
-Stream availability can still vary by track or network. If playback continues to fail after updating, please let us know which track is affected.
