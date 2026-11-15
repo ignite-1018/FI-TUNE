@@ -1,5 +1,14 @@
 [
   {
+    "id": "developer-update-2026-11",
+    "Title": "FI TUNE 2.0.0 is here",
+    "Description": "FI TUNE 2.0.0 brings improved playback recovery, optional lightweight glass styling, refreshed red-sun branding, a wave-style custom AOD player, and media notification polish. Get the update on GitHub.",
+    "ImageURL": [],
+    "Important": true,
+    "Author": "FI TUNE Developer",
+    "Date": 1794730877000
+  },
+  {
     "id": "playback-fix-2026-11",
     "Title": "Playback fix: update FI TUNE to 1.0.4",
     "Description": "We fixed a playback issue that could show \"No stream available\" when YouTube rejected an audio stream. Update FI TUNE to 1.0.4 to get the fix.",
