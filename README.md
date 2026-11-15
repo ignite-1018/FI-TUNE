@@ -1,7 +1,9 @@
 # FI TUNE
 
 <p align="center">
-  <img src="assets/fi-tune-banner.png" alt="FI TUNE — Music, your way">
+  <img src="assets/fi-tune-icon-v2.png" alt="FI TUNE refreshed red-sun logo" width="160">
+  <br>
+  <strong>Music, your way</strong>
 </p>
 
 <p align="center">
@@ -14,7 +16,7 @@ FI TUNE is an independent, community-developed Android music player derived from
 ## Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/home.png" alt="FI TUNE home screen" width="360">
+  <img src="assets/screenshots/home.png" alt="FI TUNE home screen with the in-app header" width="360">
   <img src="assets/screenshots/search.png" alt="FI TUNE search screen" width="360">
 </p>
 
