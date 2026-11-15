@@ -2,7 +2,7 @@
   {
     "id": "developer-update-2026-11",
     "Title": "FI TUNE 2.0.0 is here",
-    "Description": "FI TUNE 2.0.0 brings improved playback recovery, optional lightweight glass styling, refreshed red-sun branding, a wave-style custom AOD player, and media notification polish. Get the update on GitHub.",
+    "Description": "FI TUNE 2.0.0 adds playback recovery, optional glass styling, refreshed branding, a wave-style AOD player, and update checks. If 1.0.4 doesn't list it, download 2.0.0 from GitHub and install over the existing app; no uninstall is needed.",
     "ImageURL": [],
     "Important": true,
     "Author": "FI TUNE Developer",
