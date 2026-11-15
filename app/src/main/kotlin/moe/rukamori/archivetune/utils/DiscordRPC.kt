@@ -53,7 +53,7 @@ class DiscordRPC(
         private const val PAUSE_IMAGE_URL =
             "https://raw.githubusercontent.com/ignite-1018/FI-TUNE/main/assets/fi-tune-pause-icon.png"
         private const val APP_ICON_URL =
-            "https://raw.githubusercontent.com/ignite-1018/FI-TUNE/main/assets/fi-tune-icon.png"
+            "https://raw.githubusercontent.com/ignite-1018/FI-TUNE/main/assets/fi-tune-icon-v2.png"
         private const val TAG = "DiscordRPC"
     }
 
