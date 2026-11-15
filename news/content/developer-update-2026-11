@@ -7,9 +7,10 @@ FI TUNE 2.0.0 brings a refreshed listening experience, with improvements across 
 - **Refreshed branding:** The red-sun FI TUNE artwork now appears in the app icon and splash/about screens. The familiar FI mark remains in the header and media notification.
 - **Wave-style custom AOD player:** The custom always-on display player has a smoothly updating, seekable wave progress bar and glass-styled controls.
 - **Media notification polish:** Media controls now use improved transport classification, lock-screen visibility, and accent color.
+- **Update checker:** Check for the latest FI TUNE release from Settings > Updates.
 
 **Download [FI TUNE 2.0.0 from GitHub](https://github.com/ignite-1018/FI-TUNE/releases/tag/V2.0.0).**
 
-Android and device manufacturers control the appearance of the system lock screen and notification shade. FI TUNE's custom AOD styling appears in its own player screen.
+If you're on 1.0.4 and the in-app checker doesn't list 2.0.0, open the release link, download the APK, and install it over your existing FI TUNE app. The official 1.0.4 and 2.0.0 APKs use the same signing certificate, so you don't need to uninstall.
 
-**Upgrade note:** This APK is signed with a replacement release key. If Android reports a signature mismatch while updating an older installation, back up your data before considering a reinstall; uninstalling may remove local app data.
+Android and device manufacturers control the appearance of the system lock screen and notification shade. FI TUNE's custom AOD styling appears in its own player screen.
