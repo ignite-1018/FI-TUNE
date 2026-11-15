@@ -20,6 +20,13 @@ FI TUNE is an independent, community-developed Android music player derived from
   <img src="assets/screenshots/search.png" alt="FI TUNE search screen" width="360">
 </p>
 
+### Player and lyrics previews
+
+<p align="center">
+  <a href="app/src/main/res/drawable/player_preview.png"><img src="app/src/main/res/drawable/player_preview.png" alt="FI TUNE player screen preview" width="240"></a>
+  <a href="app/src/main/res/drawable/lyrics_preview.png"><img src="app/src/main/res/drawable/lyrics_preview.png" alt="FI TUNE lyrics screen preview" width="240"></a>
+</p>
+
 ## Highlights
 
 - Browse, search, and play music; manage queues and playlists.
